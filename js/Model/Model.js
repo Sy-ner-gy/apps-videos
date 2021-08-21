@@ -62,27 +62,15 @@ class Model{
     connectDatabase(){
         // Your web app's Firebase configuration
          // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-            var firebaseConfig = {
-                apiKey: "AIzaSyDEtpfo5eeBYub1fgCLKM_SMv4ZzmfBAgw",
-                authDomain: "play-9775f.firebaseapp.com",
-                databaseURL: "https://play-9775f-default-rtdb.firebaseio.com",
-                projectId: "play-9775f",
-                storageBucket: "play-9775f.appspot.com",
-                messagingSenderId: "833926432231",
-                appId: "1:833926432231:web:37f9b6a2962c8c79802942",
-                measurementId: "G-LDM79RVMSZ"
-            };
-            //Extra
-            /* var firebaseConfig = {
-                apiKey: "AIzaSyAJ9zmuqV5EFJ9f8HY0eQy7mnX870c0iNg",
-                authDomain: "playextra-27f40.firebaseapp.com",
-                databaseURL: "https://playextra-27f40-default-rtdb.firebaseio.com",
-                projectId: "playextra-27f40",
-                storageBucket: "playextra-27f40.appspot.com",
-                messagingSenderId: "637998280658",
-                appId: "1:637998280658:web:5c666fe4b3138ba1a5620b",
-                measurementId: "G-Z2GHFR8880"
-              }; */
+         var firebaseConfig = {
+            apiKey: "AIzaSyA8VatUsrBVfnGr39504PkK2V-b6Xbp6MY",
+            authDomain: "videos-f9347.firebaseapp.com",
+            projectId: "videos-f9347",
+            storageBucket: "videos-f9347.appspot.com",
+            messagingSenderId: "159927562164",
+            appId: "1:159927562164:web:764745403e327de02f0ce1",
+            measurementId: "G-1J4VH51376"
+          };
              // Initialize Firebase
              firebase.initializeApp(firebaseConfig);
              firebase.analytics();
