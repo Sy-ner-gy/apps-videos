@@ -62,6 +62,9 @@ class Controller{
             S.s(".box article p span").innerText= `[ ${obj["name"]} ]`
         })})
     }
+    delFire(){
+        alert("!")
+    }
     listenerInfoBoxClose(){
         S.s("#false").addEventListener("click",e=>{
             S.s(".box").classList.remove("box_open")
@@ -95,7 +98,7 @@ class Controller{
                 e.target.parentNode.parentNode.parentNode.parentNode.querySelector("header h1").innerHTML="Erro! <div id='fechar' style='width: 30px;float:right;background:green;border:2px solid white;cursor:pointer;border-radius:360px;padding:5px;position:fixed;left:85%;top:-30px'>X</div>"
                 e.target.parentNode.parentNode.parentNode.querySelector("p").innerHTML=`
                 <h3><b><u>${this.currentDataset.name}</u></b></h3><br>
-                Esse arquivo existe no database mas não existe no storage e por esse motivo não foi possível finalizar a operação. <br><br>
+                Esse arquivo existe no database mas não existe no storage e por esse motivo não foi possível finalizar a operação. <br><button id="delFire" data-key="${err[1].key}">EXCLUIR</button><br><br>
                 `
                 S.s("#false").disabled=true
                 S.s("#true").disabled=true
@@ -110,6 +113,9 @@ class Controller{
                         e.target.parentNode.parentNode.parentNode.querySelector("p").innerHTML=p
                         this.currentDataset=""
                     },500)
+                })
+                S.s("#delFire").addEventListener("click",e=>{
+                    this.model.deleteFirebase(e.target.dataset.key)
                 })
             })
        
@@ -152,7 +158,7 @@ class Controller{
             this.videoGalleryGenerator()
             .then(res=>{
                 this.selectCurrentScene(S.s("#modal_gallery"))
-                console.log(res.info)
+                //console.log(res.info)
             })
             .catch(err=>{console.log(err)})
         }
@@ -282,10 +288,11 @@ class Controller{
         this.file.addEventListener("change",e=>{
              this.model.uploadTask(e.target.files)
              .then(ress=>{
-                S.s("#progress").hidden=true
                 ress.forEach(resp=>{
+                    const part = resp.name.split("-")
+                    const name = part[0]
                     this.model.getFireBaseRef("files").push().set({
-                        name:resp.name,
+                        name,
                         nameFile:resp.name,
                         type:resp.type,
                         contentType:resp.contentType,
@@ -332,7 +339,7 @@ class Controller{
         })
     }
     //----------------------------------------------------
-    //PLAY CONTROLS
+    // CONTROLS PLAY
     toggle(vet){// need to pass three values index 0 1 2
         return vet[1]==vet[0]?vet[2]:vet[1]
     }
